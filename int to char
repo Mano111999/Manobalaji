@@ -1,0 +1,17 @@
+package com.balaji;
+
+import java.util.Scanner;
+
+public class Ascii_1 {
+    public static void main(String[] args) {
+        // ASCII 1
+
+        Scanner sc= new Scanner(System.in);
+        System.out.println("enter the Char :");
+        char ch = sc.next().charAt(0);
+        int ASCii = ch+3;
+        int  a  = ASCii;
+         char ch1 = (char) a;
+        System.out.println("The output is : "+ch1);
+    }
+}
