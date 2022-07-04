@@ -1,0 +1,14 @@
+package com.balaji;
+
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
+public class squareroot {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter the num:");
+        double num=sc.nextDouble();
+        double num1= Math.sqrt(num);
+        System.out.println("Sqrt of num "+num1);
+        }
+    }
