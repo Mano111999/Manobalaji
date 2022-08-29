@@ -1,0 +1,196 @@
+1) run a each test case:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="testoutput">
+	<test name =" correct_username_password">
+	<parameter name="username" value="Admin"/>
+	<parameter name="password" value="admin123"/>
+		<classes>
+			<class name ="Data_Testing_Example.Example_1"></class>
+		</classes>
+	</test>
+	<test name="incorrect_username_correct_password">
+	<parameter name="username" value="admin"/>
+	<parameter name="password" value="admin123"/>
+		<classes>
+			<class name="Data_Testing_Example.Example_2"></class>
+		</classes>
+	</test>
+	<test name="correct_username_incorrect_password">
+	<parameter name="username" value="Admin"/>
+	<parameter name="password" value="admin"/>
+		<classes>
+			<class name="Data_Testing_Example.Example_3"></class>
+		</classes>
+	</test>
+	<test name=" incorrect_username_incorrect_password">
+	<parameter name="username" value="adin"/>
+	<parameter name="password" value="wegw"/>
+		<classes>
+			<class name="Data_Testing_Example.Example_4"></class>
+		</classes>
+	</test>
+</suite>
+
+package Data_Testing_Example;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class Example_1 {
+	WebDriver driver;
+
+	@Test
+	@Parameters ({"username","password"})
+	public void correct_username_password(String uname, String pword ) {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\chromedrver\\\\chromedriver_win32\\\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+		WebElement username = driver.findElement(By.id("txtUsername"));
+		username.sendKeys(uname);
+		WebElement password = driver.findElement(By.id("txtPassword"));
+		password.sendKeys(pword);
+		WebElement btn = driver.findElement(By.id("btnLogin"));
+		btn.click();
+		driver.close();
+		driver.quit();
+
+	}
+
+}
+
+package Data_Testing_Example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Example_2 {
+	WebDriver driver;
+
+	@Test
+	@Parameters ({"username","password"})
+	public void correct_username_password(String uname, String pword) {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\chromedrver\\\\chromedriver_win32\\\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+		WebElement username = driver.findElement(By.id("txtUsername"));
+		username.sendKeys(uname);
+		WebElement password = driver.findElement(By.id("txtPassword"));
+		password.sendKeys(pword);
+		WebElement btn = driver.findElement(By.id("btnLogin"));
+		btn.click();
+		driver.close();
+		driver.quit();
+
+	}
+}
+
+package Data_Testing_Example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Example_3 {
+	WebDriver driver;
+
+	@Test
+	@Parameters ({"username","password"})
+	public void correct_username_password(String uname, String pword) {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\chromedrver\\\\chromedriver_win32\\\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+		WebElement username = driver.findElement(By.id("txtUsername"));
+		username.sendKeys(uname);
+		WebElement password = driver.findElement(By.id("txtPassword"));
+		password.sendKeys(pword);
+		WebElement btn = driver.findElement(By.id("btnLogin"));
+		btn.click();
+		driver.close();
+		driver.quit();
+
+	}
+}
+
+package Data_Testing_Example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Example_4 {
+	WebDriver driver;
+
+	@Test
+	@Parameters ({"username","password"})
+	public void correct_username_password(String uname , String pword) {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\chromedrver\\\\chromedriver_win32\\\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+		WebElement username = driver.findElement(By.id("txtUsername"));
+		username.sendKeys(uname);
+		WebElement password = driver.findElement(By.id("txtPassword"));
+		password.sendKeys(pword);
+		WebElement btn = driver.findElement(By.id("btnLogin"));
+		btn.click();
+		driver.close();
+		driver.quit();
+
+	}
+}
+
+2) Sample program @DataProvider :  
+
+package Data_Testing_Example;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class Example_1 {
+	WebDriver driver;
+	String [][]data= {
+			{"Admin","admin123"},// all crt
+			{"Admi","admin123"}, // user wrg
+			{"Admin","admin12"},  // pass wrg
+			{"Amin","admin12"}, // both wrng
+	};
+	@DataProvider(name="logindata")
+	public String[] []data_pr() {
+		return data;
+		}
+	
+	@Test(dataProvider="logindata")
+	public void correct_username_password(String uname, String pword ) {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\chromedrver\\\\chromedriver_win32\\\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+		WebElement username = driver.findElement(By.id("txtUsername"));
+		username.sendKeys(uname);
+		WebElement password = driver.findElement(By.id("txtPassword"));
+		password.sendKeys(pword);
+		WebElement btn = driver.findElement(By.id("btnLogin"));
+		btn.click();
+		driver.close();
+		driver.quit();
+
+	}

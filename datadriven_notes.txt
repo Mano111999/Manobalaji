@@ -1,0 +1,40 @@
+appache poi for ms excel 
+
+exel-->sheet->row-->cell
+
+
+fileinputstream 
+fileoutputstream
+
+exceptions handling 
+
+
+exceptions
+chk  -->compile time    
+unchk -->runtimetime   ----> exceptions
+error--->
+
+try{
+
+}
+catch (){
+
+}finally {
+
+}
+
+throws-->
+throw
+
+void add (){
+if(age>18){
+}
+else{
+}
+}
+
+we can create a exceptions inside method  throw 
+
+near by method is throws
+
+fileinputstream read xssf work book appache:

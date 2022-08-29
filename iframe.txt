@@ -1,0 +1,30 @@
+WebDriver driver=new ChromeDriver();
+driver.get("http://www.leafground.com/pages/frame.html");
+driver.switchTo().frame(0);
+WebElement button1=driver.find Element(By.id("click"));
+button1.click();
+String text=driver.findElement(By.id("Click")).getText();
+System.out.println(text);
+driver.switchTo().defaultContent();
+driver.switchTo().frame(1);
+driver.switchTo().frame("frame2");
+WebElement button2=driver.findElement(By.id("Click1"));
+button2.click();
+driver.switchTo().defaultContent();
+List<WebElement>totalFrames=driver.findElements(By.tagName("iframe"));
+int size=totalFrames.size();
+System.out.println(size);
+
+2) Calendar:
+WebDriver driver=new ChromeDriver();
+driver.navigate().to("http://www.leafground.com/pages/Calendar.html");
+WebElement calendar=driver.find Element(By.id("datepicker"));
+// calendar.sendkeys("01/10/2019"+Keys.ENTER);
+calendar.click();
+WebElement nextButton-driver.findElement(
+      By.xpath("//a[@title='Next']"));
+      nextButton.click();
+}
+  WebElement dateToBeGiven-driver.find Element(
+          By.xpath("//a[contains(text(),'10')]"));
+  dateToBeGiven.click();

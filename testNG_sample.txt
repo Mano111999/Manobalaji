@@ -1,0 +1,475 @@
+1) sample program using testG :
+
+package Test_practice;
+
+import org.testng.annotations.Test;
+
+public class TestNG_1 {
+	@Test
+	public void sample1() {
+		System.out.println("apple");
+	}
+	@Test
+	public void sample2() {
+		System.out.println("orange");
+	}
+	@Test
+	public void sample3() {
+		System.out.println("grapes");
+	}
+	@Test
+	public void sample4() {
+		System.out.println("carrot");
+	}
+	@Test
+	public void sample5() {
+		System.out.println("bens");
+	}
+	@Test
+	public void sample6() {
+		System.out.println("potato");
+	}
+}
+output:
+apple
+orange
+grapes
+carrot
+bens
+potato
+PASSED: sample2
+PASSED: sample6
+PASSED: sample5
+PASSED: sample4
+PASSED: sample1
+PASSED: sample3
+
+2)sample program to execute the program by using priority:
+package Test_practice;
+
+import org.testng.annotations.Test;
+
+public class TestNG_2 {
+
+	// drive the car 
+	// req---> start move 80kmph 1,2,3,4,gear 
+	@Test(priority=0)
+	public void startthecar() {
+		System.out.println("start the car ");
+	}
+	@Test(priority=1)
+	public void firdtgear() {
+		System.out.println("firdtgear ");
+	}
+	@Test(priority=2)
+	public void secondgear() {
+		System.out.println("secondgear ");
+	}
+	@Test(priority=3)
+	public void thirdgear() {
+		System.out.println("thirdgear ");
+	}
+	@Test(priority=4)
+	public void fourthgear () {
+		System.out.println("fourthgear ");
+	}
+}
+
+output:
+start the car 
+firdtgear 
+secondgear 
+thirdgear 
+fourthgear 
+PASSED: thirdgear
+PASSED: startthecar
+PASSED: secondgear
+PASSED: firdtgear
+PASSED: fourthgear
+
+3) sample program to skip the testcase by using enabled key word:
+
+package Test_practice;
+
+import org.testng.annotations.Test;
+
+public class TestNG_3 {
+	@Test(priority=0)
+	public void startthecar() {
+		System.out.println("start the car ");
+	}
+	
+	@Test(priority=1)
+	public void firdtgear() {
+		System.out.println("firdtgear ");
+	}
+	@Test(priority=2)
+	public void secondgear() {
+		System.out.println("secondgear ");
+	}
+	@Test(priority=3)
+	public void thirdgear() {
+		System.out.println("thirdgear ");
+	}
+	@Test(priority=4)
+	public void fourthgear () {
+		System.out.println("fourthgear ");
+	}
+	@Test(priority=5,enabled=false)
+	public void musuci_on () {
+		System.out.println("on the music  ");
+	}
+}
+output:
+start the car 
+firdtgear 
+secondgear 
+thirdgear 
+fourthgear 
+PASSED: thirdgear
+PASSED: startthecar
+PASSED: secondgear
+PASSED: firdtgear
+PASSED: fourthgear
+
+4) smaple program to using dependson method :
+
+// student should complete primary , hig, engineering to eligibility to take the test :
+
+
+public class TestNG_4 {
+	@Test(enabled=false)
+	public void primary_school() {
+     System.out.println("primary completed");
+     
+	}
+	@Test(dependsOnMethods="hig_scholl")
+	public void hig_school() {
+	     System.out.println("hig completed");
+	     
+		}
+	@Test(dependsOnMethods="hig_scholl")
+	public void engineering_school() {
+	     System.out.println("engineering  completed");
+	     
+		}
+	@Test(dependsOnMethods="hig_scholl")
+	public void eligiblity() {
+	     System.out.println("you are eligible ");
+	     
+		}
+}
+output:
+[RemoteTestNG] detected TestNG version 7.4.0
+org.testng.TestNGException: 
+Test_practice.TestNG_4.engineering_school() depends on nonexistent method hig_scholl
+
+
+5) open google , amazon, flipcart :
+
+
+package Test_practice;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+@Test
+public class TestNG_5 {
+	// open a google and amzon, flipcart , finally quit all 
+ WebDriver driver;
+ long start_time;
+ long end_time;
+ 
+ 
+ 	@BeforeSuite
+	public void open_browser() {
+		//start_time=System.currentTimeMillis();
+		System.setProperty("webdriver.chrome.driver", "E:\\\\chromedrver\\\\chromedriver_win32\\\\chromedriver.exe");
+		 driver=new ChromeDriver();
+}
+ 	@Test
+	public void open_google() {
+	driver.get("https://www.google.co.in/");	
+	}
+ 	@Test
+	public void open_amazon() {
+		driver.get("https://www.amazon.in/");
+	}
+ 	@Test
+	public void open_flipcart() {
+		driver.get("https://www.flipkart.com/");
+	}
+ 	@AfterSuite
+	public void close_browser() {
+		driver.quit();
+		//end_time=System.currentTimeMillis();
+		//long total_time =end_time-start_time;
+	}
+}
+
+6) write code in xml file :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name ="testing suite">
+<test name="testcase">
+<classes >
+<class name ="Test_practice.TestNG_1"></class>
+<class name ="Test_practice.TestNG_2"></class>
+<class name ="Test_practice.TestNG_3"></class>
+<class name ="Test_practice.TestNG_4"></class>
+<class name ="Test_practice.TestNG_5"></class>
+</classes>
+</test>
+</suite>
+
+
+7) run a program groups ND INCLUDE AND EXCLUDE :
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name ="testing suite">
+<test name="testcase">
+<groups>
+<run>
+<include name ="Apple"></include>
+<include name ="oneplus"></include>
+<exclude name ="realme"></exclude>
+</run>
+</groups>
+<classes >
+<class name ="Test_practice.TestNG_6"></class>
+</classes>
+</test>
+</suite>
+
+8) sample program to parameter 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name ="testing suite">
+<test name="testcase">
+<parameter name="name" value="mano balaji"></parameter>
+<classes >
+
+<class name ="Test_practice.TestNG_7"></class>
+</classes>
+</test>
+</suite>
+
+package Test_practice;
+
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class TestNG_7 {
+	 // parameter
+	@Test
+	@Parameters("name")
+	public void get_name(String name) {
+		System.out.println("Name is "+name);
+	}
+
+}
+
+9) open a google and amazon parallel
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name ="testing suite" parallel="methods" thread-count="2">
+<test name="testcase">
+<parameter name="name" value="mano balaji"></parameter>
+<classes >
+
+<class name ="Test_practice.TestNG_8"></class>
+</classes>
+</test>
+</suite>
+
+package Test_practice;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class TestNG_8 {
+	@Test
+	public void open_google() {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\\\\\chromedrver\\\\\\\\chromedriver_win32\\\\\\\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://www.google.co.in/");
+	}
+	@Test
+	
+	public void open_amazon() {
+		System.setProperty("webdriver.chrome.driver", "E:\\\\\\\\chromedrver\\\\\\\\chromedriver_win32\\\\\\\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://www.amazon.in/");
+	}
+
+} using listerens :
+
+10) using all anotations
+
+package Test_practice;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterSuite;
+
+public class exampletest {
+	
+  @Test
+  public void testcase() {
+	  System.out.println("im  test");
+  }
+  @BeforeMethod
+  public void beforeMethod() {
+	  System.out.println("im before method");
+  }
+
+  @AfterMethod
+  public void afterMethod() {
+	  System.out.println("im after method");
+  }
+
+  @BeforeClass
+  public void beforeClass() {
+	  System.out.println("im before class");
+  }
+
+  @AfterClass
+  public void afterClass() {
+	  System.out.println("im after class");
+  }
+
+  @BeforeTest
+  public void beforeTest() {
+	  System.out.println("im before test");
+  }
+
+  @AfterTest
+  public void afterTest() {
+	  System.out.println("im after test");
+  }
+
+  @BeforeSuite
+  public void beforeSuite() {
+	  System.out.println("im before suite");
+  }
+
+  @AfterSuite
+  public void afterSuite() {
+	  System.out.println("im after suite");
+  }
+
+}
+output:
+im before suite
+im before test
+im before class
+im before method
+im  test
+im after method
+im after class
+im after test
+PASSED: testcase
+
+11)
+
+package Test_practice;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import org.testng.annotations.Test;
+
+public class TestNG_10 implements ITestListener{
+@Test
+	@Override
+	public void onTestStart(ITestResult result) {
+		// TODO Auto-generated method stub
+		System.out.println(" onTestStart");
+	}
+@Test
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		// TODO Auto-generated method stub
+	System.out.println("  onTestSuccess");
+	}
+@Test
+	@Override
+	public void onTestFailure(ITestResult result) {
+		// TODO Auto-generated method stub
+	System.out.println("  onTestFailure");
+	}
+@Test
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		// TODO Auto-generated method stub
+	System.out.println("  onTestSkipped");
+	}
+@Test
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		// TODO Auto-generated method stub
+	System.out.println("  onTestFailedButWithinSuccessPercentage");
+	}
+@Test
+	@Override
+	public void onTestFailedWithTimeout(ITestResult result) {
+		// TODO Auto-generated method stub
+	System.out.println("  onTestFailedWithTimeout");
+	}
+@Test
+	@Override
+	public void onStart(ITestContext context) {
+		// TODO Auto-generated method stub
+	System.out.println(" onStart");
+	}
+@Test
+	@Override
+	public void onFinish(ITestContext context) {
+		// TODO Auto-generated method stub
+	System.out.println("  onFinish");
+	}
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name ="testing suite" parallel="methods" thread-count="2">
+<listeners>
+<listener class-name="Test_practice.TestNG_10"></listener>
+</listeners>
+<test name="testcase">
+
+<classes >
+
+<class name ="Test_practice.TestNG_5"></class>
+</classes>
+</test>
+</suite>
+
+output:
+ onStart
+ onTestStart
+ onTestStart
+  onTestSuccess
+ onTestStart
+  onTestSuccess
+  onTestSuccess
+  onFinish
+
+===============================================
+testing suite
+Total tests run: 3, Passes: 3, Failures: 0, Skips: 0
+===============================================

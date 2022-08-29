@@ -1,0 +1,39 @@
+1)
+WebDriver driver=new ChromeDriver();
+driver.get("http://www.leafground.com/pages/download.html");
+WebElement downloadLink=driver.findElement(
+        By.LinkText("Download xls"));
+download Link.click();
+Thread.sleep(3000);
+File fileLocation=new File("C:\\ Users \\ Elcot \\ Downloads");
+File[] file= file.totalFiles();
+for(File file:totalFiles){
+    if(file.getName().equals("download.xls")){
+}
+   }
+       totalFiles=fileLocation.listFiles();
+                                      I
+        System.out.println("File is downloaded");
+        break;
+
+
+
+
+
+2)
+System.setProperty("webdriver.chrome.driver",
+        "C:\\ Users \\ Elcot \\ Desktop \\ drivers \\ chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("http://www.leafground.com/pages/upload.html");
+WebElement uploadButton=driver.find Element(By.name("filename"));
+uploadButton.click();
+String file="C:\\ Users \\ Elcot \\ Downloads \\ download.xls";
+StringSelection selection=new StringSelection(file);
+Toolkit.getDefault Toolkit().getSystemClipboard().setContents(selection,null);
+Robot robot=new Robot();
+robot.keyPress(KeyEvent.VK_CONTROL);
+robot.keyPress(KeyEvent.VK_V);
+robot.keyRelease(KeyEvent.VK_V);
+robot.keyRelease(KeyEvent.VK_CONTROL);
+robot.keyPress(KeyEvent.VK_ENTER);
+robot.keyRelease(KeyEvent.VK_ENTER);
